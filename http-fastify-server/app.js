@@ -17,6 +17,7 @@ module.exports = async function (fastify, opts) {
       root: path.join(__dirname, 'public')
     })
   }
+
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'plugins'),
     options: Object.assign({}, opts)
