@@ -1,0 +1,11 @@
+{
+  "name": "services-module",
+  "version": "1.0.0",
+  "description": "Service module LFW212 certification",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CNiebles R",
+  "license": "ISC"
+}
