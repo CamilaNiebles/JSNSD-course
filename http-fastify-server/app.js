@@ -2,21 +2,22 @@
 
 const path = require('path')
 const AutoLoad = require('fastify-autoload')
-
-const dev = process.env.NODE_ENV !== 'production'
-
-const fastifyStatic = dev && require('fastify-static')
+const pointOfView = require('point-of-view')
+const handlebars = require('handlebars')
 
 module.exports = async function (fastify, opts) {
   /**
-   * It's a bad practice use node to handle static content
-   * for that reason this package is only in dev environment.
+   * Point of view allows server render, here some handlebars
+   * allowed by point of view
+   * ht‌tp://handlebarsjs.com
+   * Fastify-static removed because now the app render dynamic files.
+   * Set dirname with views, it's the folder where fastify is going to search.
    */
-  if (dev) {
-    fastify.register(fastifyStatic, {
-      root: path.join(__dirname, 'public')
-    })
-  }
+  fastify.register(pointOfView, {
+    engine: { handlebars },
+    root: path.join(__dirname, 'views'),
+    layout: 'layout.hbs'
+  })
 
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'plugins'),

@@ -9,6 +9,13 @@
  */
 module.exports = async (fastify, opts) => {
   fastify.get('/', async (request, reply) => {
-    return reply.sendFile('hello.html')
+    /**
+     * This value is a query param, by default has Hello value.
+     */
+    const { greeting = 'Hello ' } = request.query
+    /**
+     * Method with the logic to render the hello.hbs file.
+     */
+    return reply.view(`hello.hbs`, { greeting })
   })
 }
